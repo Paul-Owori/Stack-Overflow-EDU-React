@@ -1,0 +1,11 @@
+.not-found-container{
+    display:flex;
+    align-content: center;
+    align-items: center;
+    border:2px solid blue;
+    min-height:92vh
+}
+
+.not-found-container div{
+    flex:1;
+}

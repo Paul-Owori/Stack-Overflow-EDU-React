@@ -1,0 +1,6 @@
+.page-container{
+    width:98vw;
+    height:92vh;
+    border:solid 1px red;
+    overflow-y: auto;
+}

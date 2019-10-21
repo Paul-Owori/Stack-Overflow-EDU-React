@@ -1,0 +1,7 @@
+.navbar{
+    width:100%;
+    position:absolute;
+    top:0rem;
+    border:solid 1px green;
+    height:8vh
+}
