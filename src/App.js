@@ -20,6 +20,7 @@ import NotFound from './views/NotFound'
 function App() {
   return (
     <div className="App">
+      {/* <NavBar /> */}
       <Router>
         <NavBar path="/" component={NavBar} />
         <Route exact path="/" component={HomePage} />

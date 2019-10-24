@@ -1,0 +1,25 @@
+.link-card {
+    color: #db8204;
+    text-decoration: none;
+    flex: 3;
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 2px 3px 5px #6d6d6d;
+    text-align: left;
+    cursor: pointer;
+    min-height: 10rem
+}
+
+.link-card:hover {
+    background: #f1a02f;
+    color: white;
+}
+
+.link-card:hover h2 {
+
+    color: white;
+}
+
+
+

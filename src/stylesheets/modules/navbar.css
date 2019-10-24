@@ -8,7 +8,7 @@
     display: flex;
     width: 100%;
     padding: 1rem;
-    box-shadow: 2px 3px 5px #000000;
+    box-shadow: 2px 3px 5px #6d6d6d;
     margin: 0rem;
 }
 
@@ -64,7 +64,7 @@
     padding: 0rem;
     width: 90vw;
     background: #161718;
-    box-shadow: 2px 3px 5px #000000
+    box-shadow: 2px 3px 5px #6d6d6d
 }
 
 .dropDownLinks a li {

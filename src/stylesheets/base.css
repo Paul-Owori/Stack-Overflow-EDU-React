@@ -70,3 +70,18 @@ textarea:active {
     border: none;
     outline: none;
 }
+
+
+/* Card */
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+/* Values that will change on smaller screen sizes */
+@media screen and (max-width: 960px) {
+    .card-container {
+        flex-direction: column;
+    }
+}
