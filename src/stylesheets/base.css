@@ -79,6 +79,11 @@ textarea:active {
     color: white;
 }
 
+/* Formatting */
+.center-this{
+    text-align: center;
+}
+
 /* Values that will change on smaller screen sizes */
 @media screen and (max-width: 960px) {
     .card-container {
