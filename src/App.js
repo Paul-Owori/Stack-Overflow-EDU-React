@@ -32,7 +32,7 @@ function App() {
 
 
 
-        <Route exact path="/*" component={NotFound} />
+        {/* <Route exact path="/:anything" component={NotFound} /> */}
       </Router>
       
     </div>
@@ -40,3 +40,14 @@ function App() {
 }
 
 export default App;
+
+/**  
+ *  Geo-firestore
+ * Functions
+ * Firestore
+ * Verifying tokens
+ * Joi
+ * Firebase CLI
+ * 
+ * Firebase functions / firestore -> sockets chat
+ * */

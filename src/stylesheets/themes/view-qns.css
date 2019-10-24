@@ -1,0 +1,43 @@
+h1 {
+    text-align: left;
+    margin: 1rem 1rem 2.5rem 1rem;
+
+}
+
+.question-wrapper {
+    text-align: justify;
+    border: solid 1px #db8204;
+    border-radius: 8px;
+    padding: 1rem;
+    max-width: 75%;
+    width: 100%;
+    margin: 1rem auto 1rem 1rem;
+    box-shadow: 1px 1px 2px 0.1px #000000;
+    max-height: 12rem;
+    height: 100%
+}
+
+.question-text {
+    height: 100%;
+    text-align: justify;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
+
+.buttonContainer {
+    text-align: end;
+
+}
+
+.see-more-btn {
+    width: 8em;
+    padding: 0.5rem;
+    box-shadow: 0.5px 1px 1.5px 0.3px #000000;
+}
+
+.see-more-link {
+    text-decoration: none;
+    color: white;
+}

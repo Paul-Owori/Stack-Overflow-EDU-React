@@ -1,0 +1,41 @@
+#cardContainer {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.landing-page-card {
+    color: #db8204;
+    text-decoration: none;
+    flex: 3;
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 2px 3px 5px #000000;
+    text-align: left;
+    cursor: pointer;
+    min-height: 10rem
+}
+
+h1 {
+    color: black;
+}
+
+.landing-page-card:hover {
+    background: #f1a02f;
+    color: white;
+}
+
+.landing-page-card:hover h2 {
+
+    color: white;
+}
+
+
+
+/* Values that will change on smaller screen sizes */
+@media screen and (max-width: 960px) {
+    #cardContainer {
+        flex-direction: column;
+    }
+}
