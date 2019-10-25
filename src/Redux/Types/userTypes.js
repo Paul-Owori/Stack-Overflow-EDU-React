@@ -6,3 +6,4 @@ export const DELETE_USER = "DELETE_USER";
 export const USERS_LOADING = "USERS_LOADING";
 export const SIGNIN_USER = "SIGNIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const CREATE_USER_ERROR = "CREATE_USER_ERROR";

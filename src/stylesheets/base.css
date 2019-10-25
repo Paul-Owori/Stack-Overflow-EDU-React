@@ -79,9 +79,17 @@ textarea:active {
     color: white;
 }
 
-/* Formatting */
+/* Thematic formatting and styling */
 .center-this{
     text-align: center;
+}
+
+.color-black{
+    color:black;
+}
+
+.color-orange{
+    color:#ff9501
 }
 
 /* Values that will change on smaller screen sizes */

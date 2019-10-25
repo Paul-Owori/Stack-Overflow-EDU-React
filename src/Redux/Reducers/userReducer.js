@@ -6,7 +6,7 @@ import {
     UPDATE_USER,
     USERS_LOADING,
     SIGNIN_USER,
-    LOGOUT_USER
+    CREATE_USER_ERROR
   } from "../Types/userTypes";
   
   const initialState = {
@@ -54,6 +54,11 @@ import {
           ],
           loading: false
         };
+        case CREATE_USER_ERROR:
+          return {
+          ...state,
+          user_error:action.payload
+          };
       case USERS_LOADING:
         return {
           ...state,
