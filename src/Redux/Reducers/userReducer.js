@@ -6,7 +6,8 @@ import {
     UPDATE_USER,
     USERS_LOADING,
     SIGNIN_USER,
-    CREATE_USER_ERROR
+    CREATE_USER_ERROR,
+    LOGOUT_USER
   } from "../Types/userTypes";
   
   const initialState = {

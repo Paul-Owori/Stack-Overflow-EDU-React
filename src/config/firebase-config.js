@@ -27,7 +27,6 @@ import 'firebase/auth'
 //   Update firestore setting (recommended)
   firebase.firestore().settings({timestampsInSnapshots:true});
 //   Initialize firestore analytics
-  firebase.analytics();
 
   export default firebase;
   

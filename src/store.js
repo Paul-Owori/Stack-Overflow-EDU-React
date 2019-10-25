@@ -21,7 +21,9 @@ const firebaseMiddleware = {
 // Initialize store
 const initialState = {};
 
-const middleWare = [thunk.withExtraArgument(firebaseMiddleware)];
+const middleWare = [thunk.withExtraArgument({
+  getFirebase, getFirestore
+})];
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -29,9 +31,14 @@ const store = createStore(
   rootReducer,
   initialState,
   // Setup enhancers
-  composeEnhancers(applyMiddleware(...middleWare)),
-  reduxFirestore(firebaseConfig),
-  reactReduxFirebase(firebaseConfig)
+  composeEnhancers(
+    applyMiddleware(thunk.withExtraArgument({
+      getFirebase, getFirestore
+    })),
+    reduxFirestore(firebaseConfig),
+    reactReduxFirebase(firebaseConfig)
+    ),
+  
 );
 
 export default store;
