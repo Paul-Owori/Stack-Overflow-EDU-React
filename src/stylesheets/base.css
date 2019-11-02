@@ -84,6 +84,18 @@ textarea:active {
     text-align: center;
 }
 
+.center-content{
+    align-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.max-width-50{
+    max-width: 50vw;
+    margin-left:auto;
+    margin-right:auto
+}
+
 .color-black{
     color:black;
 }
@@ -96,5 +108,9 @@ textarea:active {
 @media screen and (max-width: 960px) {
     .card-container {
         flex-direction: column;
+    }
+
+    .max-width-50{
+        max-width: 80vw;
     }
 }
