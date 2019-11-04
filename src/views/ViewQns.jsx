@@ -49,6 +49,7 @@ class ViewQns extends Component {
               upVotes={status.upvotes.length}
               downVotes={status.downvotes.length}
               answers={answer_ids.length}
+              history={this.props.history}
             />
 
           )}

@@ -2,11 +2,14 @@ import React, { Component } from "react";
 
 // Components
 import InputTextArea from './../components/InputTextArea'
+import VotingBtn from './../components/VotingBtn'
 
 
 // Stylesheets
 import "./../stylesheets/base.css";
 import "./../stylesheets/themes/view-one-qn.css";
+import "./../stylesheets/themes/view-qns.css";
+
 
 /* This component should be fed props of: 
 onSubmit, 
@@ -20,7 +23,7 @@ class ViewOneQn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      answer: "",
+      answers: "",
       askerFirstName: "",
       askerLastName: ""
     }
@@ -30,19 +33,29 @@ class ViewOneQn extends Component {
     this.setState({ answer: input })
     console.log("Received input", input)
   }
+
+  vote = (upOrDown) => {
+    alert("Voted! " + upOrDown)
+    console.log("Props: ", this.props)
+}
   render() {
     return (
       <div className="page-container ">
 
         <div className="content-container">
 
-
-          <div id="questionWrapper">
-
-            <h1 id="userAsked" className="color-orange">
+        <h1 className="color-orange align-left add-padding-left">
               {this.state.askerFirstName ? this.state.askerFirstName : "User"} asked
           </h1>
+          <div id="questionWrapper" className="question-wrapper">
+
+            
+            {/* Voting button */}
+            <VotingBtn onVote={this.vote} className="voting-button"/>
+            <div className="question-details">
+
             <h2 id="questionTitle">Why doesnt my code run?</h2>
+            
 
             <p id="questionText">Could someone help me with this javascript code?
                 I've tried to Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, magni tenetur eveniet
@@ -55,9 +68,12 @@ class ViewOneQn extends Component {
               <input type="checkbox" name="answerQnCheckbox" id="answerQnCheckbox" />
               <label id="answerQnBtn" htmlFor="answerQnCheckbox">Answer this Qn</label>
             </div>
+            </div>
           </div>
           <div id="answersWrapper">
             <h2 id="answersTitle">Answers:</h2>
+            {!this.state.answers?(<h4 className="align-left color-orange">No answers yet. Be the first to answer.</h4>):""}
+            {/* Map answers here */}
 
           </div>
 

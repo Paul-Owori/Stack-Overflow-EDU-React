@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 // Components
 import BlackCard from './../components/BlackCard'
+import VotingBtn from './../components/VotingBtn'
 
 // Stylesheets
 import "./../stylesheets/base.css";
@@ -33,7 +34,7 @@ const QuestionCard = (props) => {
     //   ]
     // }
     const goToQn = () => {
-        alert(props.qnID ? props.qnID : "No ID")
+        props.history.push(`/view/${props.qnID}`)
     }
 
     const vote = (upOrDown) => {
@@ -46,13 +47,14 @@ const QuestionCard = (props) => {
 
         <BlackCard className="question-container">
 
-            <span className="votes-container">
-                <span className="voting-btn" onClick={vote.bind(this, "up")}><i class="fas fa-caret-up"></i></span>
-                <span className="upvote-count">{props.upVotes - props.downVotes}</span>
-                <span className="voting-btn" onClick={vote.bind(this, "down")}><i class="fas fa-caret-down"></i></span>
-            </span>
+           <VotingBtn onVote={vote}
+           upVotes={props.upVotes}
+           downVotes={props.downVotes}
+           className=""
 
-            <div className="question-wrapper">
+           />
+
+            <div className="question-details-wrapper">
 
                 <h2 className="question-title">{props.qnTitle ? props.qnTitle : ""}</h2>
                 <p class="question-text">
