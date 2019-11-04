@@ -12,6 +12,7 @@ import {
   const initialState = {
     qns: [],
     qn: {},
+    statusMsgs:[],
     loading: false
   };
   
@@ -34,12 +35,23 @@ import {
         };
   
       case POST_QN:
-        return {
-          ...state,
-          qns: [...state.qns, action.payload],
-          qn: action.payload,
-          loading: false
-        };
+        let {message} =action.payload
+        if(message){
+          return {
+            ...state,
+            statusMsgs: [...state.statusMsgs, action.payload],
+            loading: false
+          }
+        }
+        else{
+
+          return {
+            ...state,
+            qns: [...state.qns, action.payload],
+            qn: action.payload,
+            loading: false
+          };
+        }
 
         case VOTE_QN:
             return {

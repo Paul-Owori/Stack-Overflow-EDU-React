@@ -9,6 +9,11 @@ import QuestionCard from './../components/QuestionCard'
 import "./../stylesheets/base.css";
 import "./../stylesheets/themes/view-qns.css";
 
+// Redux
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import {getQns} from './../Redux/Actions/qnActions'
+
 class ViewQns extends Component {
   constructor(props) {
     super(props);
@@ -34,11 +39,27 @@ class ViewQns extends Component {
       ]
     }
   }
+
+  componentDidMount=()=>{
+    this.props.getQns()
+    
+    
+  }
+
+  componentDidUpdate=()=>{
+    console.log("Props: ", this.props.questions.qns)
+    if(this.state.questions && this.state.questions !== this.props.questions.qns){
+      this.setState({questions:this.props.questions.qns})
+    }
+  }
+
+  
   render() {
     return (
       <div className="page-container">
         <h1 className="color-orange center-this">These are all the questions users have asked.</h1>
         <div className="qn-container">
+          
           {this.state.questions.map(({ title, text, _id, status, answer_ids }) =>
 
             <QuestionCard
@@ -61,4 +82,17 @@ class ViewQns extends Component {
   }
 }
 
-export default ViewQns;
+// export default ViewQns;
+
+ViewQns.propTypes = {
+  getQns: PropTypes.func.isRequired,
+  questions: PropTypes.object.isRequired,
+  
+};
+const mapStateToProps = state => ({
+  questions: state.qn
+});
+export default connect(
+  mapStateToProps,
+  { getQns}
+)(ViewQns);

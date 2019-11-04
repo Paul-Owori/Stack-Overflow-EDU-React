@@ -9,32 +9,61 @@ import {
     CREATE_USER_ERROR,
     SIGNIN_USER} from '../Types/userTypes'
 
-export const addUser = user =>{
-    // return (dispatch, getState, {getFirebase, getFirestore})=>{
-    //     // Send data to the firestore
-    //     const firestore = getFirestore();
-    //     firestore.collection("users").add(user)
-    //     .then(result=>{
-    //         console.log("The result from adding a user to firestore", result)
-    //         dispatch({action:ADD_USER, payload:result})
-    //     })
-    //     .catch(err=>{
-    //         const message =`There was an error adding user: ${user} to the firestore: `;
-    //         console.error(message, err)
-    //         dispatch({action:CREATE_USER_ERROR, payload:err})
-    //     })
-
-
-    // }
-    console.log("Yeahhhh")
-
-}
-
-
 export const usersLoading = () =>{
-    return {type:USERS_LOADING}
-    
+  return {type:USERS_LOADING}
+  
 }
+
+export const addUser = user => dispatch=>{
+
+    dispatch(usersLoading);
+
+    fetch(`http://stackoverflow-api.herokuapp.com/auth/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+      .then(res => res.json())
+      .then(res => {
+        sessionStorage.setItem("user", JSON.stringify(res));
+        dispatch({ type: ADD_USER, payload: res });
+      })
+      .catch(error => {
+        console.error("Error signing up user: ", error);
+      })
+  
+
+}
+
+
+
+export const loginUser = user => dispatch=>{
+
+  dispatch(usersLoading);
+
+  fetch(`http://stackoverflow-api.herokuapp.com/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(user)
+  })
+    .then(res => res.json())
+    .then(res => {
+      sessionStorage.setItem("token", JSON.stringify(res));
+      dispatch({ type: SIGNIN_USER, payload: res });
+    })
+    .catch(error => {
+      console.error("Error logging in user: ", error);
+    })
+
+
+}
+
+
+
 
 /**
  * //Add a new user

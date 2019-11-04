@@ -34,9 +34,6 @@ function App() {
           <Route exact path="/viewqns" component={ViewQns} />
           <Route exact path="/view/:qnID" component={ViewOneQn} />
 
-
-
-
           {/* <Route exact path="/:anything" component={NotFound} /> */}
         </Router>
         

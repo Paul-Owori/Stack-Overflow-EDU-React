@@ -24,7 +24,8 @@ h1 {
 .question-details-wrapper{
     max-width:90%;
     max-height:60%;
-    min-width:70%
+    min-width:70%;
+    width:90%;
 }
 
 .question-text {

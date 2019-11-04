@@ -13,6 +13,8 @@ import {
   const initialState = {
     users: [],
     user: {},
+    statusMsgs:[],
+    token:"",
     loading: false,
     loggedIn: false
   };
@@ -32,16 +34,20 @@ import {
           users: state.users.filter(user => user._id !== action.payload)
         };
       case ADD_USER:
+        let timeStamp = new Date()
+        let {message} = action.payload
+        let newStatus = {
+          timeStamp, message
+        }
         return {
           ...state,
-          users: [...state.users, action.payload],
-          user: action.payload,
+          statusMsgs:[...state.statusMsgs, newStatus],
           loading: false
         };
       case SIGNIN_USER:
         return {
           ...state,
-          user: action.payload,
+          token: action.payload,
           loading: false,
           loggedIn: true
         };

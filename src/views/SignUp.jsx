@@ -3,9 +3,7 @@ import React, { Component } from "react";
 // Import Redux
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
-
-// Import Redux actions 
-import { addUser } from './../Redux/Actions/userActions'
+import { addUser, loginUser } from './../Redux/Actions/userActions'
 
 // Components
 import Card from './../components/Card'
@@ -21,8 +19,14 @@ class SignUp extends Component {
       firstName: "",
       lastName: "",
       email: "",
-      password: ""
+      password: "",
+      loginEmail:"",
+      loginPassword:""
     }
+  }
+
+  componentDidUpdate=()=>{
+    console.log(this.props)
   }
 
   //Change a field in the state when its partner field in the form is edited
@@ -35,11 +39,20 @@ class SignUp extends Component {
     let user = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      email: this.state.email,
+      emailAddress: this.state.email,
       password: this.state.password
     }
 
     this.props.addUser(user)
+  }
+
+  signinUser =()=>{
+    let user ={
+      emailAddress:this.state.loginEmail,
+      password:this.state.loginPassword
+    }
+
+    this.props.loginUser(user)
   }
 
 
@@ -53,9 +66,18 @@ class SignUp extends Component {
 
             <h2 className="center-this">Login Now</h2>
             <form action="#" id="logInForm">
-              <input type="email" id="loginEmail" placeholder="Your email address" />
-              <input type="password" id="loginPassword" placeholder="Your password" />
-              <button type="button" className="submit-button" id="loginBtn">Submit</button>
+              <input type="email" id="loginEmail" name="loginEmail" 
+              value={this.state.loginEmail}  onChange={this.handleChange} 
+              placeholder="Your email address" />
+              <input type="password" id="loginPassword" name="loginPassword" 
+              value={this.state.loginPassword} onChange={this.handleChange} 
+              placeholder="Your password" />
+              <button 
+              type="button" 
+              className="submit-button" 
+              id="loginBtn"
+              onClick={this.signinUser}
+              >Submit</button>
             </form>
 
           </Card>
@@ -82,7 +104,7 @@ class SignUp extends Component {
                 onChange={this.handleChange} />
 
 
-              <button type="button" id="signUpBtn" className="submit-button">Submit</button>
+              <button type="button" id="signUpBtn"onClick={this.signUpUserHandler} className="submit-button">Submit</button>
             </form>
           </Card>
         </div>
@@ -96,10 +118,11 @@ const mapStateToProps = state => ({
 });
 
 SignUp.propTypes = {
-  addUser: PropTypes.func.isRequired
+  addUser: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired
 }
 
 export default connect(
   mapStateToProps,
-  { addUser }
+  { addUser, loginUser }
 )(SignUp);
