@@ -12,7 +12,7 @@ class About extends Component {
       <div className="page-container center-content">
         <BlackCard className="max-width-50 about-card">
           <h1 className="center-this color-orange">About</h1>
-          <p>
+          <div>
             This is a learning project built for the OutBox EDU Core Program.
             <br />
             <br />
@@ -34,7 +34,7 @@ class About extends Component {
             <br />
             <br />
             This project was built by <span className="make-bold">Paul Robert Owori</span>
-            <div className="social-icons">
+            <section className="social-icons">
 
               <span className="icon">
                 <a href="https://www.linkedin.com/in/paul-owori-957753171/"><i className="fab fa-linkedin"></i></a>
@@ -42,8 +42,8 @@ class About extends Component {
               <span className="icon">
                 <a href="https://github.com/Paul-Owori"><i className="fab fa-github"></i></a>
               </span>
-            </div>
-          </p>
+            </section>
+          </div>
         </BlackCard>
       </div >);
   }

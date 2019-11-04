@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // Components
 import InputTextArea from './../components/InputTextArea'
 import VotingBtn from './../components/VotingBtn'
+import AnswerCard from './../components/AnswerCard'
 
 
 // Stylesheets
@@ -34,10 +35,19 @@ class ViewOneQn extends Component {
     console.log("Received input", input)
   }
 
-  vote = (upOrDown) => {
-    alert("Voted! " + upOrDown)
-    console.log("Props: ", this.props)
-}
+  voteQn = (upOrDown) => {
+    alert("Voted " + upOrDown)
+    
+  }
+
+  voteAns = (upOrDown) => {
+    alert("Voted " + upOrDown)
+    
+  }
+
+  flagPreferredAnswer=(ansID)=>{
+    alert("Flagged " + ansID +" as preferred")
+  }
   render() {
     return (
       <div className="page-container ">
@@ -47,11 +57,11 @@ class ViewOneQn extends Component {
         <h1 className="color-orange align-left add-padding-left">
               {this.state.askerFirstName ? this.state.askerFirstName : "User"} asked
           </h1>
-          <div id="questionWrapper" className="question-wrapper">
+          <div id="questionWrapper" className="user-question-wrapper">
 
             
             {/* Voting button */}
-            <VotingBtn onVote={this.vote} className="voting-button"/>
+            <VotingBtn onVote={this.voteQn} className="voting-button"/>
             <div className="question-details">
 
             <h2 id="questionTitle">Why doesnt my code run?</h2>
@@ -74,6 +84,14 @@ class ViewOneQn extends Component {
             <h2 id="answersTitle">Answers:</h2>
             {!this.state.answers?(<h4 className="align-left color-orange">No answers yet. Be the first to answer.</h4>):""}
             {/* Map answers here */}
+
+            <AnswerCard
+            answerText="Test Text"
+            voteAns={this.voteAns}
+            preferred={true}
+            ansID={123}
+            flagPreferred={this.flagPreferredAnswer}
+            />
 
           </div>
 

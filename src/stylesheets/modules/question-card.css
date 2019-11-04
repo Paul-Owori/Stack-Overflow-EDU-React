@@ -22,7 +22,7 @@ h1 {
 
 
 .question-details-wrapper{
-    max-width:80%;
+    max-width:90%;
     max-height:60%;
     min-width:70%
 }
@@ -66,5 +66,17 @@ h1 {
 
 .answer-count{
     padding-right:1rem
+}
+
+@media screen and (max-width: 960px) {
+    .question-container {
+        flex-direction: column;
+        max-height: 20rem;
+    }
+    .vote-question-button{
+        text-align: center;
+        width:100%
+        /* align-content: center; */
+    }
 }
 /* qn-button-container  see-more-link question-text*/

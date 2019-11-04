@@ -39,7 +39,6 @@ const QuestionCard = (props) => {
 
     const vote = (upOrDown) => {
         alert("Voted! " + upOrDown)
-        console.log("Props: ", props)
     }
 
 
@@ -47,17 +46,12 @@ const QuestionCard = (props) => {
 
         <BlackCard className="question-container">
 
-           <VotingBtn onVote={vote}
-           upVotes={props.upVotes}
-           downVotes={props.downVotes}
-           className=""
-
-           />
+          
 
             <div className="question-details-wrapper">
 
                 <h2 className="question-title">{props.qnTitle ? props.qnTitle : ""}</h2>
-                <p class="question-text">
+                <p className="question-text">
                     {props.qnText ? props.qnText : ""}
 
                 </p>
@@ -73,6 +67,12 @@ const QuestionCard = (props) => {
                     </Link>
                 </div>
             </div>
+             <VotingBtn onVote={vote}
+           upVotes={props.upVotes}
+           downVotes={props.downVotes}
+           className="vote-question-button"
+
+           />
 
         </BlackCard>
 

@@ -1,0 +1,51 @@
+.answer-wrapper {
+    border: 1px solid #f1a02f;
+    border-radius: 8px;
+    width: 100%;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    max-width:100%
+    
+}
+
+
+
+.answer-wrapper p{
+    flex: 10.4;
+    text-overflow: ellipsis;
+    max-width: 80%;
+}
+
+.answer-button-wrapper{
+    flex:1.6;
+    display: flex;
+}
+.check-btn{
+    font-size:3em;
+    align-self: center;
+    cursor: pointer;
+}
+
+.green-check{
+    color:#5cb85c;
+}
+
+.green-check:hover{
+    color:#638863;
+}
+
+.gray-check{
+    color:#aaaaaa;
+}
+
+.gray-check:hover{
+    color:#5cb85c;
+}
+
+@media screen and (max-width: 960px) {
+    .answer-wrapper {
+        flex-direction: column;
+    }
+}

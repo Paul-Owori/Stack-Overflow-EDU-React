@@ -18,6 +18,7 @@
 .voting-btn{
     font-size: 3.5em;
     color:gray;
+    cursor: pointer;
 }
 
 .voting-btn:hover{

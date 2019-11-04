@@ -1,13 +1,13 @@
-.question-wrapper,
+.user-question-wrapper,
 #answersWrapper {
     padding: 0rem 0.5rem 3rem 0.5rem;
     margin: 1rem 2rem 2rem 2rem;
     border-bottom: 2px solid #f1a02f
 }
 
-.question-wrapper{
+.user-question-wrapper{
     display:flex;
-    /* flex-direction: row-reverse; */
+    flex-direction: row-reverse;
 
 }
 .question-details{
@@ -59,13 +59,6 @@
 
 }
 
-#newAnswerWrapper {
-    border: 1px solid #f1a02f;
-    border-radius: 8px;
-    width: 80%;
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-    margin: 0.5rem auto 0.5rem auto;
-}
 
 textarea {
     border-bottom: 1px solid #f1a02f;
@@ -106,9 +99,12 @@ textarea:focus {
         margin: 0.5rem auto 0.5rem auto;
     }
 
-    .question-wrapper{
+    .user-question-wrapper{
         flex-direction: column-reverse;
     }
+    
+}
+@media screen and (max-width: 768px) {
     .voting-button{
         width:100%;
         text-align: center;
