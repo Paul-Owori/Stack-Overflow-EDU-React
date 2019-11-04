@@ -1,3 +1,30 @@
 .about-card {
     margin-top: 5rem;
 }
+
+.social-icons{
+    margin:0.8rem;
+    display: flex;
+    max-width:100px;
+
+}
+
+.social-icons .icon {
+    
+    flex:1;
+    font-size:2.2em;
+    
+}
+
+.social-icons .icon a{
+    text-decoration: none;
+    color:#db8204;
+}
+
+.social-icons .icon a:hover{
+    color:#f59104;
+}
+
+.social-icons .icon a:active, .social-icons .icon a:focus{
+    color:#975901;
+}

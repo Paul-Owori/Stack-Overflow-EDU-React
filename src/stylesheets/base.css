@@ -77,6 +77,8 @@ textarea:active {
     display: flex;
     justify-content: space-between;
     color: white;
+    max-width:75%;
+    margin:3rem auto 1.5rem auto
 }
 
 /* Thematic formatting and styling */
@@ -102,6 +104,16 @@ textarea:active {
 
 .color-orange{
     color:#ff9501
+}
+
+.make-bold{
+    font-weight:bold
+}
+
+.content-container{
+    max-width:900px;
+    width:100%;
+    margin:2rem auto 2rem auto;
 }
 
 /* Values that will change on smaller screen sizes */

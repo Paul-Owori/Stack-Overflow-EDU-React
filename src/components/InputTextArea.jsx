@@ -43,7 +43,7 @@ class InputTextArea extends Component {
                 {/* Buttons */}
                 <span className="button-container">
                     <button type="reset" value="reset" className="ask-btn reset-btn">{this.props.grayBtnTitle ? this.props.grayBtnTitle : ""}</button>
-                    <button type="submit" value="submit" className="ask-btn">{this.props.yelloBtnTitle ? this.props.yelloBtnTitle : ""}</button>
+                    <button type="submit" value="submit" className="ask-btn">{this.props.yellowBtnTitle ? this.props.yellowBtnTitle : ""}</button>
                 </span>
 
             </form>

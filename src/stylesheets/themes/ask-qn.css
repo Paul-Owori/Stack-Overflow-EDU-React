@@ -1,3 +1,9 @@
 #contentContainer {
     text-align: center;
 }
+
+.question-title-input{
+width:78%;
+padding:0.8rem;
+font-size: 1.1em;
+}

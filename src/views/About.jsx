@@ -13,12 +13,39 @@ class About extends Component {
         <BlackCard className="max-width-50 about-card">
           <h1 className="center-this color-orange">About</h1>
           <p>
-            We are a Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quidem officiis magni doloremque at, nisi vel, mollitia sit eius tempore consequatur porro, ipsam cum nemo quibusdam eligendi nostrum maxime sequi.
+            This is a learning project built for the OutBox EDU Core Program.
+            <br />
+            <br />
+            Any user of this web app is able to:
+            <ul>
+              <li>Create an account.</li>
+              <li>Login with the newly created account.</li>
+              <li>Ask a question.</li>
+              <li>Have that question answered by other users.</li>
+              <li>Select and flag a single answer to their question as the correct / preferred answer</li>
+              <li>Answer other users questions.</li>
+              <li>Comment on answers to any question</li>
+              <li>Upvote and Downvote other users' questions.</li>
+              <li>Upvote and Downvote other users' answers to any question.</li>
 
-            We also Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nisi quo, maxime mollitia ratione voluptate dignissimos deserunt hic commodi non aliquid consequuntur ipsum molestias voluptatibus sunt odit ipsa dicta fuga. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sit odit eos velit repudiandae quam exercitationem! Nam quisquam vitae a sed, voluptate quidem earum rem voluptas id fugit quae in! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima illo odio quis in, accusantium possimus, magnam ea commodi nulla molestiae! Impedit placeat soluta, necessitatibus nemo harum quae nihil repudiandae. We're amazing.
+            </ul>
+
+            This projects frontend was built using the <span className="make-bold">MERN </span> stack (MongoDB, Express.js React.js, Node.js)
+            <br />
+            <br />
+            This project was built by <span className="make-bold">Paul Robert Owori</span>
+            <div className="social-icons">
+
+              <span className="icon">
+                <a href="https://www.linkedin.com/in/paul-owori-957753171/"><i className="fab fa-linkedin"></i></a>
+              </span>
+              <span className="icon">
+                <a href="https://github.com/Paul-Owori"><i className="fab fa-github"></i></a>
+              </span>
+            </div>
           </p>
         </BlackCard>
-      </div>);
+      </div >);
   }
 }
 
