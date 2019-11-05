@@ -27,6 +27,22 @@ import {
       })
   }
 
+  export const getQn = (qnID)=> dispatch=>{
+    dispatch(qnsLoading);
+    fetch(`http://stackoverflow-api.herokuapp.com/questions/${qnID}`)
+      .then(res => res.json())
+      .then(res => {
+        if(!res.message){
+          sessionStorage.setItem("question", JSON.stringify(res));
+        }
+        dispatch({ type: GET_QN, payload: res });
+      })
+      .catch(error => {
+        console.error(`Error getting single question with ID ${qnID}: `, error);
+      })
+  }
+
+
 export const postQn =({qn, token})=>dispatch=>{
     console.log("Token was received ", token)
     console.log("Question was asked", qn)

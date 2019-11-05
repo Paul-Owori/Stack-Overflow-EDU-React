@@ -26,7 +26,17 @@ import {
         };
       }
       case GET_QN:
-        return { ...state, qn: action.payload, loading: false };
+        if(!action.payload.message){
+
+          return { ...state, qn: action.payload, loading: false };
+        }
+        else{
+          return {
+            ...state,
+            statusMsgs: [...state.statusMsgs, action.payload],
+            loading: false 
+          }
+        }
       case DELETE_QN:
         return {
           ...state,

@@ -63,6 +63,31 @@ export const loginUser = user => dispatch=>{
 }
 
 
+export const getUser = ({token, userID}) => dispatch=>{
+  let bearer_token = `Bearer ${token.token}`
+
+  dispatch(usersLoading);
+
+  fetch(`http://stackoverflow-api.herokuapp.com/auth/${userID}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": bearer_token
+      
+  }
+  })
+    .then(res => res.json())
+    .then(res => {
+      //sessionStorage.setItem("qnUser", JSON.stringify(res));
+      dispatch({ type: GET_USER, payload: res });
+    })
+    .catch(error => {
+      console.error(`Error fetching details for user: ${userID}. Error: `, error);
+    })
+
+
+}
+
 
 
 /**

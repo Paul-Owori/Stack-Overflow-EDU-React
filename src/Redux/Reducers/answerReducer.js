@@ -12,6 +12,7 @@ import {
   const initialState = {
     answers: [],
     answer: {},
+    statusMsgs:[],
     loading: false
   };
   
@@ -34,12 +35,22 @@ import {
         };
   
       case POST_ANSWER:
-        return {
-          ...state,
-          answers: [...state.answers, action.payload],
-          answer: action.payload,
-          loading: false
-        };
+        if(state.answers.length){
+          return {
+            ...state,
+            answers: [...state.answers, action.payload.result],
+            answer: action.payload.result,
+            loading: false
+          }
+        }else{
+          return {
+            ...state,
+            answers: [action.payload.result],
+            answer: action.payload.result,
+            loading: false
+          }
+        }
+       ;
 
         case VOTE_ANSWER:
             return {

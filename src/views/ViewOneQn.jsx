@@ -5,6 +5,14 @@ import InputTextArea from './../components/InputTextArea'
 import VotingBtn from './../components/VotingBtn'
 import AnswerCard from './../components/AnswerCard'
 
+// Redux
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {getQn} from './../Redux/Actions/qnActions'
+import {getUser} from './../Redux/Actions/userActions'
+import {getAnswers, postAnswer} from './../Redux/Actions/answerActions'
+
+
 
 // Stylesheets
 import "./../stylesheets/base.css";
@@ -24,19 +32,106 @@ class ViewOneQn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      answers: "",
-      askerFirstName: "",
-      askerLastName: ""
+      answers: [],
+      answer:"",
+      qnAsker: "",
+      qn:{}
     }
   }
 
-  submitAnswer = (input) => {
-    this.setState({ answer: input })
-    console.log("Received input", input)
+  componentDidMount=()=>{
+    const { match: { params:{qnID} } } = this.props;
+    console.log("QN ID: ", qnID)
+    this.props.getQn(qnID);
+
   }
+
+  componentDidUpdate=()=>{
+    let propsQn = this.props.questions.qn;
+    let stateQn = this.state.qn;
+    let propsQnAsker = this.props.user.user;
+    let stateQnAsker = this.state.qnAsker
+    let stateAnswers =  this.state.answers
+    let propsAnswers =  this.props.answer.answers
+
+
+    // Get the token 
+    this.retrieveToken()
+    .then(token=>{
+      // Add the qn to state and fetch details of who asked it and answers
+      if(propsQn && stateQn !== propsQn){
+        console.log("PropsQN", propsQn)
+        this.props.getUser({userID:propsQn.user_id, token})
+        this.props.getAnswers(propsQn._id)
+        this.setState({qn:propsQn})
+      }
+
+      // Add the question asker details to state 
+      if(propsQnAsker && stateQnAsker!== propsQnAsker){
+        this.setState({qnAsker:propsQnAsker})
+        console.log("Qn asker", propsQnAsker)
+      }
+
+      // Check for relevant answers
+      if(propsAnswers&& stateAnswers!==propsAnswers){
+        this.setState({answers:propsAnswers})
+        console.log("Added new answers")
+      }
+
+    })
+    
+    
+    }
+
+    
+    // Function for retrieving token
+    retrieveToken = async ()=>{
+      console.log("Token")
+
+      let token;
+
+      const tokenCheck = ()=>{
+
+        if(this.props.user.token){
+         
+        return token = this.props.user.token
+      }
+      else if(sessionStorage.getItem('token')!==null){
+        return token= JSON.parse(sessionStorage.getItem('token'))
+      }
+      console.error("No token was found")
+      return("No token found")
+    }
+
+      await tokenCheck();
+
+    return token
+
+    }
+
+  submitAnswer = (text) => {
+    this.setState({ answer: text })
+    let question_id = this.state.qn._id;
+    let answer = {
+      question_id,
+      text
+    }
+    this.retrieveToken()
+    .then(token=>{
+      this.props.postAnswer({token , answer })
+    })
+    
+    console.log("Received text", answer)
+  }
+
 
   voteQn = (upOrDown) => {
     alert("Voted " + upOrDown)
+
+    this.retrieveToken().then(token=>{
+
+      console.log("Token returned", token)
+    })
     
   }
 
@@ -50,12 +145,13 @@ class ViewOneQn extends Component {
   }
   render() {
     return (
+      
       <div className="page-container ">
 
         <div className="content-container">
 
         <h1 className="color-orange align-left add-padding-left">
-              {this.state.askerFirstName ? this.state.askerFirstName : "User"} asked
+              {this.state.qnAsker.first_name ? this.state.qnAsker.first_name : "User"} asked
           </h1>
           <div id="questionWrapper" className="user-question-wrapper">
 
@@ -64,34 +160,38 @@ class ViewOneQn extends Component {
             <VotingBtn onVote={this.voteQn} className="voting-button"/>
             <div className="question-details">
 
-            <h2 id="questionTitle">Why doesnt my code run?</h2>
+            <h2 id="questionTitle">{this.state.qn.title?this.state.qn.title:"Why doesnt my code run?"}</h2>
             
 
-            <p id="questionText">Could someone help me with this javascript code?
-                I've tried to Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, magni tenetur eveniet
-                rerum quaerat recusandae id aut libero nam asperiores ex iusto labore temporibus corrupti inventore
-                impedit, praesentium voluptas at.
+            <p id="questionText">{this.state.qn.text?this.state.qn.text:"Could someone help me with this javascript code? I've tried to Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, magni tenetur eveniet rerum quaerat recusandae id aut libero nam asperiores ex iusto labore temporibus corrupti inventore impedit, praesentium voluptas at."}
             </p>
 
             <div id="btnContainer">
 
-              <input type="checkbox" name="answerQnCheckbox" id="answerQnCheckbox" />
-              <label id="answerQnBtn" htmlFor="answerQnCheckbox">Answer this Qn</label>
+              <button onClick={()=>{console.log(this.state)}}>Answer this Question</button>
             </div>
             </div>
           </div>
           <div id="answersWrapper">
             <h2 id="answersTitle">Answers:</h2>
             {!this.state.answers?(<h4 className="align-left color-orange">No answers yet. Be the first to answer.</h4>):""}
-            {/* Map answers here */}
+            {this.state.answers && this.state.answers.length?
+            this.state.answers.map(({question_id, preferred, comments,status, text, user_id, _id})=>{
+              return <AnswerCard
+              key={_id}
+              answerText={text}
+              voteAns={this.voteAns}
+              preferred={preferred}
+              ansID={_id}
+              flagPreferred={this.flagPreferredAnswer}
+              status={status}
+              comments={comments}
+              />
 
-            <AnswerCard
-            answerText="Test Text"
-            voteAns={this.voteAns}
-            preferred={true}
-            ansID={123}
-            flagPreferred={this.flagPreferredAnswer}
-            />
+            })
+              :""}
+
+            
 
           </div>
 
@@ -108,4 +208,21 @@ class ViewOneQn extends Component {
   }
 }
 
-export default ViewOneQn;
+//export default ViewOneQn;
+
+ViewOneQn.propTypes = {
+  getQn: PropTypes.func.isRequired,
+  questions: PropTypes.object.isRequired,
+  getUser: PropTypes.func.isRequired,
+  getAnswers: PropTypes.func.isRequired,
+  postAnswer: PropTypes.func.isRequired
+};
+const mapStateToProps = state => ({
+  questions: state.qn,
+  user: state.user,
+  answer:state.answer
+});
+export default connect(
+  mapStateToProps,
+  { getQn, getUser, getAnswers, postAnswer}
+)(ViewOneQn);

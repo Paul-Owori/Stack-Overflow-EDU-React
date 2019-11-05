@@ -31,7 +31,7 @@ class AskQn extends Component {
       if(this.props.user.token){
         token = this.props.user.token
         console.log("Token", token)
-        this.props.postQn(qn, token)
+        this.props.postQn({qn, token})
       }
       else if(sessionStorage.getItem('token')!==null){
         token= JSON.parse(sessionStorage.getItem('token'))

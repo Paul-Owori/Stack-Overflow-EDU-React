@@ -24,7 +24,15 @@ import {
       case GET_USERS:
         return { ...state, users: action.payload, loading: false };
       case GET_USER:
-        return { ...state, user: action.payload, loading: false };
+        if(action.payload.message){
+          return { ...state, statusMsgs:[...state.statusMsgs, {
+            message:action.payload.message,
+            timeStamp:(new Date())
+          }], loading: false };
+        }
+        else{
+          return { ...state, user: action.payload, loading: false };
+        }
       case LOGOUT_USER:
         return { ...state, user: {}, loading: false, loggedIn: false };
       case DELETE_USER:
