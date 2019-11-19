@@ -89,6 +89,18 @@ textarea:focus {
     background: #6d6c6c
 }
 
+.answer-button{
+    max-width:12rem;
+}
+
+.small-text{
+    margin:0rem;
+    padding-left:2.5rem;
+    text-align: left;
+    font-size:0.8em
+
+}
+
 /* Values that will change on smaller screen sizes */
 @media screen and (max-width: 960px) {
     #buttonContainer {

@@ -9,6 +9,9 @@ import {
     CREATE_USER_ERROR,
     SIGNIN_USER} from '../Types/userTypes'
 
+// Import helper functions
+import {checkForToken} from './helperFunctions'
+
 export const usersLoading = () =>{
   return {type:USERS_LOADING}
   
@@ -64,9 +67,13 @@ export const loginUser = user => dispatch=>{
 
 
 export const getUser = ({token, userID}) => dispatch=>{
-  let bearer_token = `Bearer ${token.token}`
+
+  let bearer_token;
 
   dispatch(usersLoading);
+
+if(token && token.token){
+  bearer_token = `Bearer ${token.token}`
 
   fetch(`http://stackoverflow-api.herokuapp.com/auth/${userID}`, {
     method: "GET",
@@ -85,6 +92,11 @@ export const getUser = ({token, userID}) => dispatch=>{
       console.error(`Error fetching details for user: ${userID}. Error: `, error);
     })
 
+}
+else{
+  dispatch(usersLoading);
+  return;
+}
 
 }
 

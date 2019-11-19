@@ -5,6 +5,7 @@ export const DELETE_ANSWER = "DELETE_ANSWER";
 export const POST_ANSWER = "POST_ANSWER";
 export const VOTE_ANSWER = "VOTE_ANSWER";
 export const ANSWERS_LOADING = "ANSWERS_LOADING";
+export const TOGGLE_PREFERRED = "TOGGLE_PREFERRED";
 
 
 

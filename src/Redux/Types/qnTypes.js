@@ -5,6 +5,8 @@ export const DELETE_QN = "DELETE_QN";
 export const POST_QN = "POST_QN";
 export const VOTE_QN = "VOTE_QN";
 export const QNS_LOADING = "QNS_LOADING";
+export const TOGGLE_ANSWERED = "TOGGLE_ANSWERED";
+
 
 
 

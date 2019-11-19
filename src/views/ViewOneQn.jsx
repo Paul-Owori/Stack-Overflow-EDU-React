@@ -8,9 +8,9 @@ import AnswerCard from './../components/AnswerCard'
 // Redux
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {getQn} from './../Redux/Actions/qnActions'
+import {getQn, voteQn, toggleAnswered} from './../Redux/Actions/qnActions'
 import {getUser} from './../Redux/Actions/userActions'
-import {getAnswers, postAnswer} from './../Redux/Actions/answerActions'
+import {getAnswers, postAnswer, togglePreferred} from './../Redux/Actions/answerActions'
 
 
 
@@ -20,14 +20,6 @@ import "./../stylesheets/themes/view-one-qn.css";
 import "./../stylesheets/themes/view-qns.css";
 
 
-/* This component should be fed props of: 
-onSubmit, 
-yellowBtnTitle, 
-grayBtnTitle, 
-placeHolder, 
-rows,
-cols
-*/
 class ViewOneQn extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +35,6 @@ class ViewOneQn extends Component {
     const { match: { params:{qnID} } } = this.props;
     console.log("QN ID: ", qnID)
     this.props.getQn(qnID);
-
   }
 
   componentDidUpdate=()=>{
@@ -60,7 +51,6 @@ class ViewOneQn extends Component {
     .then(token=>{
       // Add the qn to state and fetch details of who asked it and answers
       if(propsQn && stateQn !== propsQn){
-        console.log("PropsQN", propsQn)
         this.props.getUser({userID:propsQn.user_id, token})
         this.props.getAnswers(propsQn._id)
         this.setState({qn:propsQn})
@@ -69,13 +59,11 @@ class ViewOneQn extends Component {
       // Add the question asker details to state 
       if(propsQnAsker && stateQnAsker!== propsQnAsker){
         this.setState({qnAsker:propsQnAsker})
-        console.log("Qn asker", propsQnAsker)
       }
 
       // Check for relevant answers
       if(propsAnswers&& stateAnswers!==propsAnswers){
         this.setState({answers:propsAnswers})
-        console.log("Added new answers")
       }
 
     })
@@ -86,7 +74,6 @@ class ViewOneQn extends Component {
     
     // Function for retrieving token
     retrieveToken = async ()=>{
-      console.log("Token")
 
       let token;
 
@@ -121,22 +108,28 @@ class ViewOneQn extends Component {
       this.props.postAnswer({token , answer })
     })
     
-    console.log("Received text", answer)
   }
 
 
   voteQn = (upOrDown) => {
+
     alert("Voted " + upOrDown)
 
     this.retrieveToken().then(token=>{
 
-      console.log("Token returned", token)
+      this.props.voteQn({token, qn:"123"})
+
     })
     
   }
 
   voteAns = (upOrDown) => {
     alert("Voted " + upOrDown)
+    this.retrieveToken().then(token=>{
+
+      this.props.voteAns({token, qn:"123"})
+
+    })
     
   }
 
@@ -151,8 +144,9 @@ class ViewOneQn extends Component {
         <div className="content-container">
 
         <h1 className="color-orange align-left add-padding-left">
-              {this.state.qnAsker.first_name ? this.state.qnAsker.first_name : "User"} asked
+              {this.state.qnAsker.first_name ? this.state.qnAsker.first_name : <span>A User</span>} asked:
           </h1>
+          {this.state.qnAsker.first_name ?"":<p className="small-text color-orange add-padding-left">(Login to find out who asked this question)</p>}
           <div id="questionWrapper" className="user-question-wrapper">
 
             
@@ -167,8 +161,8 @@ class ViewOneQn extends Component {
             </p>
 
             <div id="btnContainer">
-
-              <button onClick={()=>{console.log(this.state)}}>Answer this Question</button>
+            <a href="#answerBox"><button className="answer-button">Answer this Question</button></a>
+              
             </div>
             </div>
           </div>
@@ -200,8 +194,9 @@ class ViewOneQn extends Component {
 
 
 
-
-          <InputTextArea yellowBtnTitle="Answer" grayBtnTitle="Reset" placeHolder="Your answer..." onSubmit={this.submitAnswer} />
+          <div id="answerBox"> 
+            <InputTextArea yellowBtnTitle="Answer" grayBtnTitle="Reset" placeHolder="Your answer..." onSubmit={this.submitAnswer} />
+          </div>
         </div>
       </div>
     );
@@ -215,7 +210,10 @@ ViewOneQn.propTypes = {
   questions: PropTypes.object.isRequired,
   getUser: PropTypes.func.isRequired,
   getAnswers: PropTypes.func.isRequired,
-  postAnswer: PropTypes.func.isRequired
+  postAnswer: PropTypes.func.isRequired,
+  voteQn:PropTypes.func.isRequired,
+  toggleAnswered:PropTypes.func.isRequired,
+  togglePreferred:PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
   questions: state.qn,
@@ -224,5 +222,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getQn, getUser, getAnswers, postAnswer}
+  { getQn, getUser, getAnswers, postAnswer, voteQn, togglePreferred, toggleAnswered}
 )(ViewOneQn);
